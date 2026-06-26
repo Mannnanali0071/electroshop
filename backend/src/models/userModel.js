@@ -1,0 +1,48 @@
+import mongoose from "mongoose";
+
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+      minlength: 2,
+      maxlength: 50,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      lowercase: true,
+      match: [/^\S+@\S+\.\S+$/, "Please enter a valid email address"],
+    },
+    password: {
+      type: String,
+      required: true,
+      minlength: 6, // Always hash before saving
+    },
+    phone: {
+      type: String,
+      trim: true,
+      match: [/^\d{10}$/, "Phone number must be 10 digits"],
+    },
+    address: {
+      street: { type: String, trim: true },
+      city: { type: String, trim: true },
+      state: { type: String, trim: true },
+      country: { type: String, trim: true },
+      pincode: { type: String, trim: true },
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+
+  },
+  { timestamps: true }
+);
+
+
+const User = mongoose.model("User", userSchema);
+export default User;
