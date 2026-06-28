@@ -38,11 +38,11 @@ const DashBoard = () => {
       try {
         const [productsRes, usersRes, ordersRes, salesRes, recentOrdersRes] =
           await Promise.all([
-            fetch("http://electroshop-334x.onrender.com/api/products/count"),
-            fetch("http://electroshop-334x.onrender.com/api/auth/users/count"),
-            fetch("http://electroshop-334x.onrender.com/api/orders/get/count"),
-            fetch("http://electroshop-334x.onrender.com/api/orders/get/totalSales"),
-            fetch("http://electroshop-334x.onrender.com/api/orders"),
+            fetch("https://electroshop-334x.onrender.com/api/products/count"),
+            fetch("https://electroshop-334x.onrender.com/api/auth/users/count"),
+            fetch("https://electroshop-334x.onrender.com/api/orders/get/count"),
+            fetch("https://electroshop-334x.onrender.com/api/orders/get/totalSales"),
+            fetch("https://electroshop-334x.onrender.com/api/orders"),
           ]);
 
         if (!productsRes.ok || !usersRes.ok) throw new Error("Failed to fetch counts");

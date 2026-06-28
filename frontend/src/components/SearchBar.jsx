@@ -14,7 +14,7 @@ const SearchBar = () => {
   }, []);
 
   const fetchProducts = async () => {
-    const uri = "http://electroshop-334x.onrender.com/api/products";
+    const uri = "https://electroshop-334x.onrender.com/api/products";
     try {
       const res = await fetch(uri);
       if (!res.ok) {

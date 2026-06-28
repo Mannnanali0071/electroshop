@@ -11,7 +11,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://electroshop-334x.onrender.com/api/products");
+        const response = await fetch("https://electroshop-334x.onrender.com/api/products");
         if (!response.ok)
           return errorMSG("Failed to fetch products, Try Again");
 

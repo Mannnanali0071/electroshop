@@ -18,7 +18,7 @@ export default function OrdersDetails() {
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const res = await fetch(`http://electroshop-334x.onrender.com/api/orders/${id}`);
+        const res = await fetch(`https://electroshop-334x.onrender.com/api/orders/${id}`);
         const data = await res.json();
         setOrder(data);
       } catch (error) {

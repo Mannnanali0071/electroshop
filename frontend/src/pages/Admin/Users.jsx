@@ -7,7 +7,7 @@ const Users = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchUsersdata = async () => {
-    const uri = "http://electroshop-334x.onrender.com/api/auth/users";
+    const uri = "https://electroshop-334x.onrender.com/api/auth/users";
     const token = localStorage.getItem("token");
 
     try {
@@ -49,7 +49,7 @@ const Users = () => {
         <div className="flex items-center justify-center py-10 text-gray-400">
           <svg
             className="animate-spin h-7 w-7 mr-3 text-orange-400"
-            xmlns="http://www.w3.org/2000/svg"
+            xmlns="https://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
           >

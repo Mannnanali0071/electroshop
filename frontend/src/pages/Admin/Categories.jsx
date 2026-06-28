@@ -18,7 +18,7 @@ const Categories = () => {
   // Fetch Categories
   const fetchCategories = async () => {
     try {
-      const response = await fetch("http://electroshop-334x.onrender.com/api/categories");
+      const response = await fetch("https://electroshop-334x.onrender.com/api/categories");
       const data = await response.json();
       setCategories(data);
     } catch (error) {
@@ -33,7 +33,7 @@ const Categories = () => {
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://electroshop-334x.onrender.com/api/categories", {
+      const response = await fetch("https://electroshop-334x.onrender.com/api/categories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newCategory),
@@ -55,7 +55,7 @@ const Categories = () => {
   // DELETE
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://electroshop-334x.onrender.com/api/categories/${id}`, {
+      const response = await fetch(`https://electroshop-334x.onrender.com/api/categories/${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
@@ -82,7 +82,7 @@ const Categories = () => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://electroshop-334x.onrender.com/api/categories/${selectedCategory._id}`,
+        `https://electroshop-334x.onrender.com/api/categories/${selectedCategory._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

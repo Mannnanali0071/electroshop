@@ -16,7 +16,7 @@ const ProductEditPage = () => {
     console.log("Form Data:", data);
     try {
       const token = localStorage.getItem("token")
-      const response = await fetch(`http://electroshop-334x.onrender.com/api/products/${id}`, {
+      const response = await fetch(`https://electroshop-334x.onrender.com/api/products/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://electroshop-334x.onrender.com/api/products");
+        const res = await fetch("https://electroshop-334x.onrender.com/api/products");
         if (!res.ok) throw new Error("Network response was not ok");
         const data = await res.json();
         setProducts(data);
