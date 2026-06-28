@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CartCard from "../../components/CartCard";
 import { FiShoppingCart } from "react-icons/fi";
-import { updateQuantity, removeFromCart, clearCart } from "../../redux/slices/cartSlice";
+import {
+  updateQuantity,
+  removeFromCart,
+  clearCart,
+} from "../../redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import CheckoutForm from "../../components/CheckoutForm";
 
@@ -10,6 +14,7 @@ const Cart = () => {
   const cartData = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [shippingData, setShippingData] = useState(null);
@@ -47,28 +52,12 @@ const Cart = () => {
     setError("");
 
     try {
-      // First, create order items
-      const orderItems = await Promise.all(
-        cartData.map(async (item) => {
-          const res = await fetch("http://localhost:5001/api/order-items", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: token,
-            },
-            body: JSON.stringify({
-              product: item._id,
-              quantity: item.qty || 1,
-            }),
-          });
+      // Backend khud OrderItems create karega
+      const orderItems = cartData.map((item) => ({
+        product: item._id,
+        quantity: item.qty || 1,
+      }));
 
-          const data = await res.json();
-          if (!data.success) throw new Error("Failed to create order item");
-          return data.orderItem._id;
-        })
-      );
-
-      // Then, create the order
       const res = await fetch("http://localhost:5001/api/orders", {
         method: "POST",
         headers: {
@@ -78,14 +67,16 @@ const Cart = () => {
         body: JSON.stringify({
           orderItems,
           user: userId,
-          totalPrice: total,
           status: "Pending",
           ...shippingData,
         }),
       });
 
       const data = await res.json();
-      if (!data.success) throw new Error(data.message || "Order creation failed");
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Order creation failed");
+      }
 
       dispatch(clearCart());
       alert("Order placed successfully with Cash on Delivery!");
@@ -97,8 +88,7 @@ const Cart = () => {
       setLoading(false);
     }
   };
-
-  return (
+    return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
       <h1 className="text-3xl font-bold mb-6">🛒 Your Shopping Cart</h1>
 
@@ -114,7 +104,9 @@ const Cart = () => {
               <CartCard
                 key={item._id}
                 cartData={item}
-                onQtyChange={(qty) => dispatch(updateQuantity({ id: item._id, qty }))}
+                onQtyChange={(qty) =>
+                  dispatch(updateQuantity({ id: item._id, qty }))
+                }
                 onRemove={() => dispatch(removeFromCart(item._id))}
               />
             ))}
@@ -124,10 +116,12 @@ const Cart = () => {
 
           <div className="w-full lg:w-1/3 bg-white rounded-xl shadow-md p-6 flex flex-col gap-4 sticky top-6 h-fit">
             <h2 className="text-xl font-semibold mb-2">Order Summary</h2>
+
             <div className="flex justify-between text-gray-700">
               <span>Items ({cartData.length})</span>
               <span>₹ {total.toLocaleString("en-IN")}</span>
             </div>
+
             <div className="border-t border-gray-300 pt-3 flex justify-between font-bold text-lg">
               <span>Total</span>
               <span>₹ {total.toLocaleString("en-IN")}</span>
@@ -137,12 +131,14 @@ const Cart = () => {
               Cash on Delivery (COD) only — No online payment required.
             </p>
 
-            {error && <p className="text-red-500">{error}</p>}
+            {error && (
+              <p className="text-red-500 text-sm font-medium">{error}</p>
+            )}
 
             <button
               onClick={handleCheckout}
               disabled={loading}
-              className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-medium text-lg shadow hover:bg-green-700 transition-colors"
+              className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-medium text-lg shadow hover:bg-green-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
               {loading ? "Placing Order..." : "Confirm Order (COD)"}
             </button>
