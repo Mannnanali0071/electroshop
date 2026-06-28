@@ -12,7 +12,7 @@ const Category = ({ onSelectCategory }) => {
   // Fetch categories
   useEffect(() => {
     const fetchCategories = async () => {
-      const uri = "http://localhost:5001/api/categories";
+      const uri = "http://electroshop-334x.onrender.com/api/categories";
       try {
         const res = await fetch(uri);
         if (!res.ok) return errorMSG("Something went wrong while fetching categories");
@@ -31,7 +31,7 @@ const Category = ({ onSelectCategory }) => {
   // Fetch products
   useEffect(() => {
     const fetchProducts = async () => {
-      const uri = "http://localhost:5001/api/products";
+      const uri = "http://electroshop-334x.onrender.com/api/products";
       try {
         const res = await fetch(uri);
         if (!res.ok) return errorMSG("Something went wrong while fetching products");

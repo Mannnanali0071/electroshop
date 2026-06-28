@@ -98,7 +98,7 @@ export default function AdminProductDetail() {
     const getProductDetails = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:5001/api/products/${id}`);
+        const res = await fetch(`http://electroshop-334x.onrender.com/api/products/${id}`);
         if (!res.ok) throw new Error("Product not found");
         const data = await res.json();
         setProductDetail(data);
@@ -116,7 +116,7 @@ export default function AdminProductDetail() {
     const token = localStorage.getItem("token")
     try {
       setDeleting(true);
-      const res = await fetch(`http://localhost:5001/api/products/${id}`, {
+      const res = await fetch(`http://electroshop-334x.onrender.com/api/products/${id}`, {
         method: "DELETE",
         headers: {
           "Authorization": token,

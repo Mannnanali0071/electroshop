@@ -20,7 +20,7 @@ const ProductEditForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/categories");
+        const res = await fetch("http://electroshop-334x.onrender.com/api/categories");
         if (!res.ok) throw new Error("Failed to fetch categories");
         const data = await res.json();
         setCategories(data);
@@ -37,7 +37,7 @@ const ProductEditForm = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:5001/api/products/${id}`);
+        const res = await fetch(`http://electroshop-334x.onrender.com/api/products/${id}`);
         if (!res.ok) throw new Error("Failed to fetch product");
         const product = await res.json();
 
@@ -87,7 +87,7 @@ const ProductEditForm = () => {
       }
 
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:5001/api/products/${id}`, {
+      const res = await fetch(`http://electroshop-334x.onrender.com/api/products/${id}`, {
         method: "PUT",
         body: formData,
         headers: { Authorization: token },

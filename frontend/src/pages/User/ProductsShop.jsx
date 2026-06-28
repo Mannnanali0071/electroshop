@@ -8,7 +8,7 @@ const ProductsShop = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/products");
+        const res = await fetch("http://electroshop-334x.onrender.com/api/products");
         if (!res.ok) throw new Error("Problem fetching products");
         const data = await res.json();
         setProducts(data);

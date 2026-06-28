@@ -11,7 +11,7 @@ const OrdersPage = () => {
   }, []);
 
   const fetchOrders = async () => {
-    const uri = "http://localhost:5001/api/orders";
+    const uri = "http://electroshop-334x.onrender.com/api/orders";
     try {
       const response = await fetch(uri);
       if (!response.ok) throw new Error("Orders not fetched!");

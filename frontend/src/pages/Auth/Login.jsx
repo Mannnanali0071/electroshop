@@ -16,7 +16,7 @@ const Login = () => {
 
   const handleLogin = async (data) => {
     try {
-      const url = "http://localhost:5001/api/auth/login";
+      const url = "http://electroshop-334x.onrender.com/api/auth/login";
       const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

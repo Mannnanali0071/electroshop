@@ -24,7 +24,7 @@ const ProductCreateForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("http://localhost:5001/api/categories");
+        const res = await fetch("http://electroshop-334x.onrender.com/api/categories");
         if (!res.ok) throw new Error("Failed to fetch categories");
         const data = await res.json();
         setCategories(data);
@@ -76,7 +76,7 @@ const ProductCreateForm = () => {
       imagesFiles.forEach((file) => formData.append("images", file));
 
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5001/api/products", {
+      const res = await fetch("http://electroshop-334x.onrender.com/api/products", {
         method: "POST",
         body: formData,
         headers: { Authorization: token },

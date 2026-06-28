@@ -24,7 +24,7 @@ const RegisterStep2 = () => {
     try {
       const finalData = { ...userdata, address };
 
-      const res = await fetch("http://localhost:5001/api/auth/register", {
+      const res = await fetch("http://electroshop-334x.onrender.com/api/auth/register", {
         method: "POST",
         body: JSON.stringify(finalData),
         headers: {

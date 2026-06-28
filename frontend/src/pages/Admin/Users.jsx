@@ -7,7 +7,7 @@ const Users = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchUsersdata = async () => {
-    const uri = "http://localhost:5001/api/auth/users";
+    const uri = "http://electroshop-334x.onrender.com/api/auth/users";
     const token = localStorage.getItem("token");
 
     try {

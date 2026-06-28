@@ -11,7 +11,7 @@ const UserDetailes = () => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch(`http://localhost:5001/api/auth/user/${id}`, {
+        const res = await fetch(`http://electroshop-334x.onrender.com/api/auth/user/${id}`, {
           headers: { Authorization: token },
         });
         const data = await res.json();

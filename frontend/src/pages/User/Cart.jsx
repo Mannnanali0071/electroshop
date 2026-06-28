@@ -58,7 +58,7 @@ const Cart = () => {
         quantity: item.qty || 1,
       }));
 
-      const res = await fetch("http://localhost:5001/api/orders", {
+      const res = await fetch("http://electroshop-334x.onrender.com/api/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
