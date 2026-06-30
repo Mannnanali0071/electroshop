@@ -21,10 +21,10 @@ const Hero = () => {
 
       <div className="flex-1 min-w-[300px] px-4 text-center">
         <img
-          <img src={heroImage} alt="Hero" />
-          alt="Featured Product"
-          className="w-full max-w-md mx-auto rounded-xl shadow-md"
-        />
+  src={heroImage}
+  alt="Featured Product"
+  className="w-full max-w-md mx-auto rounded-xl shadow-md"
+/>
       </div>
     </section>
   );
